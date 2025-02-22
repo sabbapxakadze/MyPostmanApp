@@ -1,4 +1,5 @@
 using MyPostmanLibrary;
+using static MyPostmanLibrary.Enums;
 
 namespace MyPostmanUI
 {
@@ -9,6 +10,7 @@ namespace MyPostmanUI
         public Dashboard()
         {
             InitializeComponent();
+            httpVerbSelector.SelectedItem = "GET";
         }
 
         private async void sendButton_click(object sender, EventArgs e)
@@ -23,12 +25,20 @@ namespace MyPostmanUI
                 return;
             }
 
+            HttpAction action;
+
+            if (Enum.TryParse(httpVerbSelector.SelectedItem!.ToString(), out action) == false)
+            {
+                systemStatus.Text = "Invalid HTTP verb.";
+                return;
+            }
+
             try
             {
-                systemStatus.Text = "Sending a request...";
 
-
-                resultsText.Text = await _api.CallApiAsync(apiText.Text);
+                resultsText.Text = await _api.CallApiAsync(apiText.Text, bodyText.Text, action, true);
+                callData.SelectedTab = resultTab;
+                resultTab.Focus();
 
                 systemStatus.Text = "Ready";
             }

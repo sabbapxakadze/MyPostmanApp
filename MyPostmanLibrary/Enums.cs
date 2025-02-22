@@ -4,6 +4,10 @@ public class Enums
 {
     public enum HttpAction
     {
-        GET
+        GET,
+        POST,
+        PUT,
+        PATCH,
+        DELETE
     }
 }

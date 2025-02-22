@@ -2,6 +2,7 @@
 
 public interface IApiAccess
 {
-    Task<string> CallApiAsync(string url, bool formatOutput = true, Enums.HttpAction action = Enums.HttpAction.GET);
+    Task<string> CallApiAsync(string url, string content, Enums.HttpAction action = Enums.HttpAction.GET, bool formatOutput = true);
+    Task<string> CallApiAsync(string url, HttpContent? content = null, Enums.HttpAction action = Enums.HttpAction.GET, bool formatOutput = true);
     bool isValidUrl(string url);
 }

@@ -32,11 +32,18 @@
             apiLabel = new Label();
             sendButton = new Button();
             apiText = new TextBox();
-            resultsText = new TextBox();
             statusStrip = new StatusStrip();
             systemStatus = new ToolStripStatusLabel();
-            resultsLabel = new Label();
+            httpVerbSelector = new ComboBox();
+            resultTab = new TabPage();
+            resultsText = new TextBox();
+            callData = new TabControl();
+            bodyTab = new TabPage();
+            bodyText = new TextBox();
             statusStrip.SuspendLayout();
+            resultTab.SuspendLayout();
+            callData.SuspendLayout();
+            bodyTab.SuspendLayout();
             SuspendLayout();
             // 
             // FormHeader
@@ -63,7 +70,7 @@
             // 
             // sendButton
             // 
-            sendButton.Location = new Point(647, 156);
+            sendButton.Location = new Point(774, 156);
             sendButton.Margin = new Padding(2);
             sendButton.Name = "sendButton";
             sendButton.Size = new Size(74, 35);
@@ -75,23 +82,11 @@
             // apiText
             // 
             apiText.BorderStyle = BorderStyle.FixedSingle;
-            apiText.Location = new Point(177, 155);
+            apiText.Location = new Point(317, 156);
             apiText.Margin = new Padding(2);
             apiText.Name = "apiText";
             apiText.Size = new Size(453, 34);
             apiText.TabIndex = 3;
-            // 
-            // resultsText
-            // 
-            resultsText.BackColor = Color.White;
-            resultsText.BorderStyle = BorderStyle.FixedSingle;
-            resultsText.Location = new Point(150, 293);
-            resultsText.Margin = new Padding(2);
-            resultsText.Multiline = true;
-            resultsText.Name = "resultsText";
-            resultsText.ScrollBars = ScrollBars.Both;
-            resultsText.Size = new Size(698, 206);
-            resultsText.TabIndex = 4;
             // 
             // statusStrip
             // 
@@ -111,15 +106,76 @@
             systemStatus.Size = new Size(78, 32);
             systemStatus.Text = "Ready";
             // 
-            // resultsLabel
+            // httpVerbSelector
             // 
-            resultsLabel.AutoSize = true;
-            resultsLabel.Font = new Font("Segoe UI", 18F);
-            resultsLabel.Location = new Point(99, 250);
-            resultsLabel.Name = "resultsLabel";
-            resultsLabel.Size = new Size(105, 41);
-            resultsLabel.TabIndex = 6;
-            resultsLabel.Text = "Result:";
+            httpVerbSelector.DropDownStyle = ComboBoxStyle.DropDownList;
+            httpVerbSelector.FormattingEnabled = true;
+            httpVerbSelector.Items.AddRange(new object[] { "GET", "POST", "PUT", "PATCH", "DELETE" });
+            httpVerbSelector.Location = new Point(179, 156);
+            httpVerbSelector.Name = "httpVerbSelector";
+            httpVerbSelector.Size = new Size(115, 36);
+            httpVerbSelector.TabIndex = 7;
+            // 
+            // resultTab
+            // 
+            resultTab.Controls.Add(resultsText);
+            resultTab.Location = new Point(4, 29);
+            resultTab.Name = "resultTab";
+            resultTab.Padding = new Padding(3);
+            resultTab.Size = new Size(799, 337);
+            resultTab.TabIndex = 1;
+            resultTab.Text = "Result";
+            resultTab.UseVisualStyleBackColor = true;
+            // 
+            // resultsText
+            // 
+            resultsText.BackColor = Color.White;
+            resultsText.BorderStyle = BorderStyle.FixedSingle;
+            resultsText.Dock = DockStyle.Fill;
+            resultsText.Location = new Point(3, 3);
+            resultsText.Margin = new Padding(2);
+            resultsText.Multiline = true;
+            resultsText.Name = "resultsText";
+            resultsText.ReadOnly = true;
+            resultsText.ScrollBars = ScrollBars.Both;
+            resultsText.Size = new Size(793, 331);
+            resultsText.TabIndex = 5;
+            // 
+            // callData
+            // 
+            callData.Controls.Add(bodyTab);
+            callData.Controls.Add(resultTab);
+            callData.Location = new Point(114, 198);
+            callData.Name = "callData";
+            callData.SelectedIndex = 0;
+            callData.Size = new Size(807, 370);
+            callData.TabIndex = 8;
+            // 
+            // bodyTab
+            // 
+            bodyTab.Controls.Add(bodyText);
+            bodyTab.Location = new Point(4, 37);
+            bodyTab.Name = "bodyTab";
+            bodyTab.Padding = new Padding(3);
+            bodyTab.Size = new Size(799, 329);
+            bodyTab.TabIndex = 0;
+            bodyTab.Text = "Body";
+            bodyTab.UseVisualStyleBackColor = true;
+            bodyTab.UseWaitCursor = true;
+            // 
+            // bodyText
+            // 
+            bodyText.BackColor = Color.White;
+            bodyText.BorderStyle = BorderStyle.FixedSingle;
+            bodyText.Dock = DockStyle.Fill;
+            bodyText.Location = new Point(3, 3);
+            bodyText.Margin = new Padding(2);
+            bodyText.Multiline = true;
+            bodyText.Name = "bodyText";
+            bodyText.ScrollBars = ScrollBars.Both;
+            bodyText.Size = new Size(793, 323);
+            bodyText.TabIndex = 6;
+            bodyText.UseWaitCursor = true;
             // 
             // Dashboard
             // 
@@ -127,9 +183,9 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1187, 652);
-            Controls.Add(resultsLabel);
+            Controls.Add(callData);
+            Controls.Add(httpVerbSelector);
             Controls.Add(statusStrip);
-            Controls.Add(resultsText);
             Controls.Add(apiText);
             Controls.Add(sendButton);
             Controls.Add(apiLabel);
@@ -140,6 +196,11 @@
             Text = "Postman Clone by Saba";
             statusStrip.ResumeLayout(false);
             statusStrip.PerformLayout();
+            resultTab.ResumeLayout(false);
+            resultTab.PerformLayout();
+            callData.ResumeLayout(false);
+            bodyTab.ResumeLayout(false);
+            bodyTab.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -150,9 +211,13 @@
         private Label apiLabel;
         private Button sendButton;
         private TextBox apiText;
-        private TextBox resultsText;
         private StatusStrip statusStrip;
-        private Label resultsLabel;
         private ToolStripStatusLabel systemStatus;
+        private ComboBox httpVerbSelector;
+        private TabPage resultTab;
+        private TextBox resultsText;
+        private TabControl callData;
+        private TabPage bodyTab;
+        private TextBox bodyText;
     }
 }
