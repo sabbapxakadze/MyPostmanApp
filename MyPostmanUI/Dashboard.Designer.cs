@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
             FormHeader = new Label();
             apiLabel = new Label();
             sendButton = new Button();
@@ -95,10 +96,10 @@
             // 
             statusStrip.ImageScalingSize = new Size(20, 20);
             statusStrip.Items.AddRange(new ToolStripItem[] { systemStatus });
-            statusStrip.Location = new Point(0, 605);
+            statusStrip.Location = new Point(0, 611);
             statusStrip.Name = "statusStrip";
             statusStrip.Padding = new Padding(1, 0, 9, 0);
-            statusStrip.Size = new Size(1145, 38);
+            statusStrip.Size = new Size(1164, 38);
             statusStrip.TabIndex = 5;
             statusStrip.Text = "statusStrip1";
             // 
@@ -185,8 +186,8 @@
             AutoScaleDimensions = new SizeF(11F, 28F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            BackgroundImage = Properties.Resources.background;
-            ClientSize = new Size(1145, 643);
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            ClientSize = new Size(1164, 649);
             Controls.Add(callData);
             Controls.Add(httpVerbSelector);
             Controls.Add(statusStrip);
