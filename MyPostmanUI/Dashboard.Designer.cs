@@ -49,17 +49,19 @@
             // FormHeader
             // 
             FormHeader.AutoSize = true;
-            FormHeader.Font = new Font("Segoe UI", 18F);
-            FormHeader.Location = new Point(119, 53);
+            FormHeader.BackColor = Color.Transparent;
+            FormHeader.Font = new Font("HP Simplified Hans", 17.9999981F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            FormHeader.Location = new Point(118, 69);
             FormHeader.Margin = new Padding(2, 0, 2, 0);
             FormHeader.Name = "FormHeader";
-            FormHeader.Size = new Size(175, 41);
+            FormHeader.Size = new Size(176, 34);
             FormHeader.TabIndex = 0;
             FormHeader.Text = "MyPostman";
             // 
             // apiLabel
             // 
             apiLabel.AutoSize = true;
+            apiLabel.BackColor = Color.Transparent;
             apiLabel.Font = new Font("Segoe UI", 15F);
             apiLabel.Location = new Point(102, 154);
             apiLabel.Margin = new Padding(2, 0, 2, 0);
@@ -70,13 +72,14 @@
             // 
             // sendButton
             // 
+            sendButton.BackColor = Color.Transparent;
             sendButton.Location = new Point(774, 156);
             sendButton.Margin = new Padding(2);
             sendButton.Name = "sendButton";
             sendButton.Size = new Size(74, 35);
             sendButton.TabIndex = 2;
             sendButton.Text = "Send";
-            sendButton.UseVisualStyleBackColor = true;
+            sendButton.UseVisualStyleBackColor = false;
             sendButton.Click += sendButton_click;
             // 
             // apiText
@@ -92,10 +95,10 @@
             // 
             statusStrip.ImageScalingSize = new Size(20, 20);
             statusStrip.Items.AddRange(new ToolStripItem[] { systemStatus });
-            statusStrip.Location = new Point(0, 614);
+            statusStrip.Location = new Point(0, 605);
             statusStrip.Name = "statusStrip";
             statusStrip.Padding = new Padding(1, 0, 9, 0);
-            statusStrip.Size = new Size(1187, 38);
+            statusStrip.Size = new Size(1145, 38);
             statusStrip.TabIndex = 5;
             statusStrip.Text = "statusStrip1";
             // 
@@ -182,7 +185,8 @@
             AutoScaleDimensions = new SizeF(11F, 28F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1187, 652);
+            BackgroundImage = Properties.Resources.background;
+            ClientSize = new Size(1145, 643);
             Controls.Add(callData);
             Controls.Add(httpVerbSelector);
             Controls.Add(statusStrip);
