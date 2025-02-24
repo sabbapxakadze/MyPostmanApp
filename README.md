@@ -18,4 +18,6 @@ MyPostman app provides a user-friendly interface for making a HTTP requests to A
 ![My Postman Clone app result](Images/screenshot3-2.png "Choose the HTTP Request")
 4. Fill in the URL
 ![My Postman Clone app result](Images/screenshot3.png "Choose the HTTP Request")
+(In the JWT Textbox, simply write your token. You don't have to write "Bearer" in front of the token)
+
 5. Done. Upvote <3
