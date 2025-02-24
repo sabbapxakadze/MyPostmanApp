@@ -13,6 +13,7 @@ namespace MyPostmanUI
             httpVerbSelector.SelectedItem = "GET";
         }
 
+
         private async void sendButton_click(object sender, EventArgs e)
         {
             systemStatus.Text = "Sending a request...";
@@ -33,10 +34,13 @@ namespace MyPostmanUI
                 return;
             }
 
+            // Get JWT token and checkbox state
+            string? jwtToken = useJwtCheckBox.Checked ? jwtTokenText.Text : null;
+
             try
             {
 
-                resultsText.Text = await _api.CallApiAsync(apiText.Text, bodyText.Text, action, true);
+                resultsText.Text = await _api.CallApiAsync(apiText.Text, bodyText.Text, action, true, jwtToken);
                 callData.SelectedTab = resultTab;
                 resultTab.Focus();
 
@@ -47,6 +51,12 @@ namespace MyPostmanUI
                 resultsText.Text = "Error:" + ex.Message;
                 systemStatus.Text = "Error";
             }
+
+        }
+
+        private void useJwtCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            jwtTokenText.Enabled = useJwtCheckBox.Checked;
 
         }
     }

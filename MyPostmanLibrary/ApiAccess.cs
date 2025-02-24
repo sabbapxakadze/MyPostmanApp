@@ -6,13 +6,14 @@ namespace MyPostmanLibrary;
 
 public class ApiAccess : IApiAccess
 {
-    private readonly HttpClient _client = new();
+    private static readonly HttpClient _client = new();
 
     public async Task<string> CallApiAsync(
         string url,
         string content,
         HttpAction action = HttpAction.GET,
-        bool formatOutput = true
+        bool formatOutput = true,
+        string? jwtToken = null
         )
     {
         StringContent? stringContent = new(content, Encoding.UTF8, "application/json");
@@ -23,10 +24,22 @@ public class ApiAccess : IApiAccess
         string url,
         HttpContent? content = null,
         HttpAction action = HttpAction.GET,
-        bool formatOutput = true
+        bool formatOutput = true,
+        string? jwtToken = null
         )
     {
         HttpResponseMessage? response;
+
+        if (!string.IsNullOrEmpty(jwtToken))
+        {
+            _client.DefaultRequestHeaders.Authorization =
+                new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", jwtToken);
+        }
+        else
+        {
+            _client.DefaultRequestHeaders.Authorization = null;
+        }
+
 
         switch (action)
         {
@@ -49,7 +62,6 @@ public class ApiAccess : IApiAccess
                 throw new ArgumentOutOfRangeException(nameof(action), action, null);
         }
         
-        response = await _client.GetAsync(url);
 
         if (response.IsSuccessStatusCode)
         {

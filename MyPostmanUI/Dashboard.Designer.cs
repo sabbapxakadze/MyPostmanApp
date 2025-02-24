@@ -41,6 +41,8 @@
             callData = new TabControl();
             bodyTab = new TabPage();
             bodyText = new TextBox();
+            useJwtCheckBox = new CheckBox();
+            jwtTokenText = new TextBox();
             statusStrip.SuspendLayout();
             resultTab.SuspendLayout();
             callData.SuspendLayout();
@@ -123,10 +125,10 @@
             // resultTab
             // 
             resultTab.Controls.Add(resultsText);
-            resultTab.Location = new Point(4, 29);
+            resultTab.Location = new Point(4, 37);
             resultTab.Name = "resultTab";
             resultTab.Padding = new Padding(3);
-            resultTab.Size = new Size(799, 337);
+            resultTab.Size = new Size(799, 329);
             resultTab.TabIndex = 1;
             resultTab.Text = "Result";
             resultTab.UseVisualStyleBackColor = true;
@@ -142,7 +144,7 @@
             resultsText.Name = "resultsText";
             resultsText.ReadOnly = true;
             resultsText.ScrollBars = ScrollBars.Both;
-            resultsText.Size = new Size(793, 331);
+            resultsText.Size = new Size(793, 323);
             resultsText.TabIndex = 5;
             // 
             // callData
@@ -181,6 +183,29 @@
             bodyText.TabIndex = 6;
             bodyText.UseWaitCursor = true;
             // 
+            // useJwtCheckBox
+            // 
+            useJwtCheckBox.AutoSize = true;
+            useJwtCheckBox.BackColor = Color.Transparent;
+            useJwtCheckBox.Checked = true;
+            useJwtCheckBox.CheckState = CheckState.Checked;
+            useJwtCheckBox.Location = new Point(774, 119);
+            useJwtCheckBox.Name = "useJwtCheckBox";
+            useJwtCheckBox.Size = new Size(163, 32);
+            useJwtCheckBox.TabIndex = 9;
+            useJwtCheckBox.Text = "Use JWT Token";
+            useJwtCheckBox.UseVisualStyleBackColor = false;
+            useJwtCheckBox.CheckedChanged += useJwtCheckBox_CheckedChanged;
+            // 
+            // jwtTokenText
+            // 
+            jwtTokenText.BackColor = SystemColors.Control;
+            jwtTokenText.Font = new Font("Segoe UI", 8F);
+            jwtTokenText.Location = new Point(317, 119);
+            jwtTokenText.Name = "jwtTokenText";
+            jwtTokenText.Size = new Size(446, 25);
+            jwtTokenText.TabIndex = 10;
+            // 
             // Dashboard
             // 
             AutoScaleDimensions = new SizeF(11F, 28F);
@@ -188,6 +213,8 @@
             BackColor = Color.White;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             ClientSize = new Size(1164, 649);
+            Controls.Add(jwtTokenText);
+            Controls.Add(useJwtCheckBox);
             Controls.Add(callData);
             Controls.Add(httpVerbSelector);
             Controls.Add(statusStrip);
@@ -224,5 +251,7 @@
         private TabControl callData;
         private TabPage bodyTab;
         private TextBox bodyText;
+        private CheckBox useJwtCheckBox;
+        private TextBox jwtTokenText;
     }
 }
